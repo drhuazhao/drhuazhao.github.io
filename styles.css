@@ -115,3 +115,6 @@ h2{ margin-top:0; }
   }
   .hero-photo{ max-width: 360px; margin: 0 auto; }
 }
+html, body, .section, .section.alt {
+  background: white !important;
+}
