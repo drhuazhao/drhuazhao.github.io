@@ -52,17 +52,16 @@ a:hover { text-decoration: underline; }
   align-items: start;
 }
 .hero-photo{
-  background: var(--card);
-  border: 1px solid #ddd;
-  border-radius: 18px;
-  padding: 14px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.05);
+  width: 280px;              /* keep it square */
+  height: 280px;
+  border-radius: 50%;        /* makes the container round */
+  overflow: hidden;          /* hides corners outside the circle */
 }
 .hero-photo img{
-  display:block; width:100%; height:auto;
-  border-radius: 14px; /* 50% for round image */
-  border-radius: 50%;
-  object-fit: cover; /* ensures it stays nicely cropped */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* crops image nicely inside the circle */
+  border-radius: 50%;        /* ensures image is round */
 }
 
 .hero-text h1{ margin:0 0 8px; font-size: 2rem; }
