@@ -61,6 +61,8 @@ a:hover { text-decoration: underline; }
 .hero-photo img{
   display:block; width:100%; height:auto;
   border-radius: 14px; /* 50% for round image */
+  border-radius: 50%;
+  object-fit: cover; /* ensures it stays nicely cropped */
 }
 
 .hero-text h1{ margin:0 0 8px; font-size: 2rem; }
