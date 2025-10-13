@@ -62,6 +62,8 @@ a:hover { text-decoration: underline; }
   height: auto;
   object-fit: cover;         /* crops image nicely inside the circle */
   border-radius: 50%;        /* ensures image is round */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #fff;
 }
 
 .hero-text h1{ margin:0 0 8px; font-size: 2rem; }
