@@ -52,8 +52,8 @@ a:hover { text-decoration: underline; }
   align-items: start;
 }
 .hero-photo{
-  width: 200px;              /* keep it square */
-  height: 200px;
+  width: 180px;              /* keep it square */
+  height: 180px;
   border-radius: 50%;        /* makes the container round */
   overflow: hidden;          /* hides corners outside the circle */
 }
