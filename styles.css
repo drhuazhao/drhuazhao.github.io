@@ -121,3 +121,19 @@ h2{ margin-top:0; }
 html, body, .section, .section.alt {
   background: white !important;
 }
+.hero-contact {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.hero-contact a {
+  color: var(--text);
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.hero-contact a:hover {
+  text-decoration: underline;
+}
