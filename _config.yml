@@ -1,1 +1,9 @@
 theme: jekyll-theme-cayman
+# _config.yml
+author:
+  name: "Hua Zhao"
+  # …
+  links:
+    - label: "Medium"
+      icon: "fab fa-medium"
+      url: "https://medium.com/@zhaohua819"
