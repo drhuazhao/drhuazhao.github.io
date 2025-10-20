@@ -51,22 +51,35 @@ a:hover { text-decoration: underline; }
   align-items: center;
   gap: 20px;
 }
-.hero-photo{
-  width: 200px;              /* keep it square */
-  height: 200px;
-  border-radius: 50%;        /* makes the container round */
-  overflow: hidden;          /* hides corners outside the circle */
-}
-.hero-photo img{
-  width: 100%;
-  height: auto;
-  object-fit: cover;         /* crops image nicely inside the circle */
-  border-radius: 50%;        /* ensures image is round */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 2px solid #fff;
+/* Left side: Photo + Contact */
+.hero-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 250px;
 }
 
-.hero-text h1{ margin:0 0 8px; font-size: 2rem; }
+.hero-photo img {
+  max-width: 200px;
+  border-radius: 50%;
+}
+
+.hero-contact {
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Right side: Text */
+.hero-text {
+  max-width: 600px;
+  padding: 0 20px;
+}
+
+.hero-text h1 {
+  margin-top: 0;
+}
+
+
 .subtitle{ color: var(--muted); margin-top:0; }
 
 .cta{ display:flex; gap:12px; margin-top:16px; flex-wrap: wrap; }
@@ -134,42 +147,18 @@ html, body, .section, .section.alt {
   margin-top: 4px;
 }
 
-/* Make the hero section a horizontal flex layout on larger screens */
-.hero {
+/* Container: photo + text */
+.container.hero {
   display: flex;
-  flex-direction: column;   /* default: stacked on mobile */
+  flex-direction: column; /* mobile: stacked */
   align-items: center;
   gap: 20px;
 }
-
-/* On laptop or larger screens, switch to two columns */
+/* On larger screens, switch to side-by-side layout */
 @media (min-width: 768px) {
-  .hero {
+  .container.hero {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
   }
-}
-
-/* Style the photo + contact section */
-.hero-photo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 250px; /* optional */
-}
-
-.hero-photo img {
-  max-width: 200px;
-  border-radius: 50%;
-}
-
-/* Contact links under the photo */
-.hero-contact {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.hero-contact a:hover {
-  text-decoration: underline;
 }
