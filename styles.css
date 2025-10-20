@@ -200,9 +200,17 @@ html, body, .section, .section.alt {
   margin-right: 6px;  /* small space between icon and text */
 }
 
-/* Optional: adjust the spacing of links */
+/* Make the X and Medium icons bigger */
+.hero-contact .contact-icon {
+  font-size: 2.2rem;    /* 👈 adjust this value to make them bigger */
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+/* Optional: space between contact links */
 .hero-contact a {
   display: inline-block;
-  margin: 6px 0;
+  margin: 10px 0;
+  font-size: 1rem; /* keep the text at normal size */
   text-decoration: none;
 }
