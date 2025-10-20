@@ -192,3 +192,17 @@ html, body, .section, .section.alt {
 .hero-text h1 {
   margin-top: 0;
 }
+
+/* Make social icons bigger */
+.hero-contact i {
+  font-size: 1.5rem;  /* you can try 2rem for even bigger */
+  vertical-align: middle;
+  margin-right: 6px;  /* small space between icon and text */
+}
+
+/* Optional: adjust the spacing of links */
+.hero-contact a {
+  display: inline-block;
+  margin: 6px 0;
+  text-decoration: none;
+}
