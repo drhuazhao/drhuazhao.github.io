@@ -214,3 +214,7 @@ html, body, .section, .section.alt {
   font-size: 1rem; /* keep the text at normal size */
   text-decoration: none;
 }
+.hero-contact a {
+  display: flex;
+  align-items: center;
+}
