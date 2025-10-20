@@ -218,3 +218,26 @@ html, body, .section, .section.alt {
   display: flex;
   align-items: center;
 }
+/* Center the icons horizontally */
+.hero-contact {
+  display: flex;
+  justify-content: center;
+  gap: 25px;               /* space between icons */
+  margin-top: 15px;
+}
+
+/* Style and enlarge the icons */
+.hero-contact .contact-icon {
+  font-size: 2.4rem;       /* adjust size here (2.5rem for bigger) */
+  color: #000;            /* default icon colour */
+  transition: color 0.3s;
+}
+
+/* Hover effect */
+.hero-contact a:hover .contact-icon {
+  color: #00ab6c;         /* Medium green or your preferred accent colour */
+}
+
+.hero-contact a {
+  text-decoration: none;
+}
