@@ -193,31 +193,7 @@ html, body, .section, .section.alt {
   margin-top: 0;
 }
 
-/* Make social icons bigger */
-.hero-contact i {
-  font-size: 2.5rem;  
-  vertical-align: middle;
-  margin-right: 6px;  /* small space between icon and text */
-}
 
-/* Make the X and Medium icons bigger */
-.hero-contact .contact-icon {
-  font-size: 2.5rem;   
-  vertical-align: middle;
-  margin-right: 8px;
-}
-
-/* Optional: space between contact links */
-.hero-contact a {
-  display: inline-block;
-  margin: 10px 0;
-  font-size: 1rem; /* keep the text at normal size */
-  text-decoration: none;
-}
-.hero-contact a {
-  display: flex;
-  align-items: center;
-}
 /* Center the icons horizontally */
 .hero-contact {
   display: flex;
