@@ -195,7 +195,7 @@ html, body, .section, .section.alt {
 
 /* Make social icons bigger */
 .hero-contact i {
-  font-size: 1.5rem;  /* you can try 2rem for even bigger */
+  font-size: 2rem;  
   vertical-align: middle;
   margin-right: 6px;  /* small space between icon and text */
 }
