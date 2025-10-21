@@ -204,7 +204,7 @@ html, body, .section, .section.alt {
 
 /* Style and enlarge the icons */
 .hero-contact .contact-icon {
-  font-size: 2.4rem;       /* adjust size here (2.5rem for bigger) */
+  font-size: 2.3rem;       /* adjust size here (2.5rem for bigger) */
   color: #000;            /* default icon colour */
   transition: color 0.3s;
 }
