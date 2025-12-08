@@ -133,7 +133,7 @@ html, body, .section, .section.alt {
   font-size: 0.95rem;
 }
 
-.hero-contact a {
+.contact a {
   color: var(--text);
   text-decoration: none;
   display: inline-block;
@@ -194,7 +194,4 @@ html, body, .section, .section.alt {
 
 .contact a {
   text-decoration: none;
-}
-section#about {
-    padding: 2rem 0;
 }
