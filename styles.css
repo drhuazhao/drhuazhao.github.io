@@ -197,17 +197,17 @@ html, body, .section, .section.alt {
 }
 
 /* Style and enlarge the icons */
-.contact .contact-icon {
+.my-contact .contact-icon {
   font-size: 2.3rem;       /* adjust size here (2.5rem for bigger) */
   color: #000;            /* default icon colour */
   transition: color 0.3s;
 }
 
 /* Hover effect */
-.contact a:hover .contact-icon {
+.my-contact a:hover .contact-icon {
   color: #00ab6c;         /* Medium green or your preferred accent colour */
 }
 
-.contact a {
+.my-contact a {
   text-decoration: none;
 }
