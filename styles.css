@@ -212,3 +212,43 @@ html, body, .section, .section.alt {
   text-decoration: none;
 }
 
+/* Blog List */
+.blog-list {
+  list-style: none;       /* remove default bullets */
+  padding-left: 0;
+  max-width: 700px;
+  margin: 0 auto;         /* center align same as Publications */
+}
+
+.blog-list li {
+  margin: 10px 0;
+  position: relative;
+  padding-left: 22px;     /* space for custom icon */
+}
+
+.blog-list li::before {
+  content: "→";           /* stylish arrow */
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #000;
+  opacity: 0.65;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.blog-list a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1.05rem;
+  transition: color 0.2s;
+}
+
+.blog-list a:hover {
+  text-decoration: underline;
+  color: #00ab6c;         /* subtle accent colour (Medium green) */
+}
+
+.blog-list li:hover::before {
+  opacity: 1;
+  transform: translateX(3px);
+}
