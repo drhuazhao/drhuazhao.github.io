@@ -213,8 +213,22 @@ html, body, .section, .section.alt {
 }
 
 /* Blog section */
-#blog,
-h2 + ul {
-  margin-top: 20px;
-  margin-bottom: 20px;
+.blog-list {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;   /* Keep the width aligned with your text */
+  padding-left: 20px; /* Indent bullets nicely */
+}
+
+.blog-list li {
+  margin: 6px 0;
+}
+
+.blog-list a {
+  text-decoration: none;
+  color: #000;
+}
+
+.blog-list a:hover {
+  text-decoration: underline;
 }
