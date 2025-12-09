@@ -212,33 +212,64 @@ html, body, .section, .section.alt {
   text-decoration: none;
 }
 
-/* --- Blog Section  --- */
+/* Blog section */
 #blog {
-  margin-top: 40px;      /* space above the section */
-  margin-bottom: 20px;   /* space below the section */
+  margin-top: 40px;
 }
 
 #blog h2 {
-  margin-bottom: 10px;   /* space under the title */
-  font-size: 1.6rem;     /* same heading size as others */
+  font-size: 1.6rem;
   font-weight: 600;
+  margin-bottom: 16px;
 }
 
-#blog ul {
-  padding-left: 20px;    /* indentation for bullet points */
-  list-style-type: disc; /* simple bullet style */
+/* Blog card */
+.blog-card {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 18px 20px;
+  background: #fff;
+  max-width: 700px;
+  transition: all 0.25s ease;
 }
 
-#blog li {
-  margin: 6px 0;         /* spacing between links */
+.blog-card:hover {
+  border-color: #999;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
 }
 
-#blog a {
+/* Card link layout */
+.blog-card a {
   text-decoration: none;
-  color: #000;           /*black text color */
-  font-size: 1.05rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-#blog a:hover {
-  text-decoration: underline;
+/* Small label */
+.blog-category {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.55;
+}
+
+/* Title */
+.blog-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+}
+
+/* Read more */
+.blog-read {
+  font-size: 0.9rem;
+  color: #000;
+  opacity: 0.75;
+  transition: opacity 0.25s;
+}
+
+.blog-card:hover .blog-read {
+  opacity: 1;
 }
