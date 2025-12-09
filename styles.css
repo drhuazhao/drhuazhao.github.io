@@ -211,3 +211,34 @@ html, body, .section, .section.alt {
 .my-contact a {
   text-decoration: none;
 }
+
+/* --- Blog Section  --- */
+#blog {
+  margin-top: 40px;      /* space above the section */
+  margin-bottom: 20px;   /* space below the section */
+}
+
+#blog h2 {
+  margin-bottom: 10px;   /* space under the title */
+  font-size: 1.6rem;     /* same heading size as others */
+  font-weight: 600;
+}
+
+#blog ul {
+  padding-left: 20px;    /* indentation for bullet points */
+  list-style-type: disc; /* simple bullet style */
+}
+
+#blog li {
+  margin: 6px 0;         /* spacing between links */
+}
+
+#blog a {
+  text-decoration: none;
+  color: #000;           /*black text color */
+  font-size: 1.05rem;
+}
+
+#blog a:hover {
+  text-decoration: underline;
+}
