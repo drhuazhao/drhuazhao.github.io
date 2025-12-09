@@ -213,63 +213,8 @@ html, body, .section, .section.alt {
 }
 
 /* Blog section */
-#blog {
-  margin-top: 40px;
-}
-
-#blog h2 {
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-/* Blog card */
-.blog-card {
-  border: 1px solid #e6e6e6;
-  border-radius: 12px;
-  padding: 18px 20px;
-  background: #fff;
-  max-width: 700px;
-  transition: all 0.25s ease;
-}
-
-.blog-card:hover {
-  border-color: #999;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-}
-
-/* Card link layout */
-.blog-card a {
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* Small label */
-.blog-category {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  font-weight: 600;
-  opacity: 0.55;
-}
-
-/* Title */
-.blog-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #000;
-  margin: 0;
-}
-
-/* Read more */
-.blog-read {
-  font-size: 0.9rem;
-  color: #000;
-  opacity: 0.75;
-  transition: opacity 0.25s;
-}
-
-.blog-card:hover .blog-read {
-  opacity: 1;
+#blog,
+h2 + ul {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
