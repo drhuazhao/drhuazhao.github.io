@@ -205,7 +205,7 @@ html, body, .section, .section.alt {
 
 /* Hover effect */
 .my-contact a:hover .contact-icon {
-  color: #00ab6c;         /* Medium green or your preferred accent colour */
+  color: #00ab6c;         /* Medium green */
 }
 
 .my-contact a {
