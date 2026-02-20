@@ -252,3 +252,18 @@ html, body, .section, .section.alt {
   opacity: 1;
   transform: translateX(3px);
 }
+
+
+/* ===== Personal Hobbies page styles ===== */
+
+.craft-item {
+  margin-bottom: 40px;
+}
+
+.craft-photo {
+  display: block;
+  margin: 12px auto;
+  max-width: 300px;
+  height: auto;
+  border-radius: 6px;
+}
