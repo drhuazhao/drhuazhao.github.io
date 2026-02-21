@@ -267,3 +267,13 @@ html, body, .section, .section.alt {
   height: auto;
   border-radius: 6px;
 }
+
+/* Personal Hobbies image size fix */
+
+.hobbies-page img {
+  display: block;
+  margin: 12px auto;
+  max-width: 300px;
+  height: auto;
+  border-radius: 6px;
+}
