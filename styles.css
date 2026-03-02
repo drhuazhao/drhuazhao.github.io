@@ -307,3 +307,57 @@ html, body, .section, .section.alt {
   height: auto;
   border-radius: 6px;
 }
+/* ===== Projects Section ===== */
+
+#projects {
+  margin-top: 60px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.project-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+}
+
+.project-card h3 {
+  margin-top: 0;
+  font-size: 1.3em;
+  color: #222;
+}
+
+.project-card p {
+  color: #555;
+  line-height: 1.5;
+}
+
+.project-tech {
+  font-size: 0.9em;
+  color: #888;
+  margin-top: 10px;
+}
+
+.project-card a {
+  display: inline-block;
+  margin-top: 15px;
+  text-decoration: none;
+  color: #007acc;
+  font-weight: 600;
+}
+
+.project-card a:hover {
+  text-decoration: underline;
+}
