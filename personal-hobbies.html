@@ -37,16 +37,26 @@ footer {
 
  /* Back to Home Button */
 
-.back-home {
-  text-align: center;
-  margin: 60px 0 40px;
-}
+.back-btn-wrap {
+      margin-top: 2.5rem;
+    }
 
- .home-button {
-  background-color: #ffffff;
-  color: #222;
-  border: 1.5px solid #bbb;
-}
+    .back-btn {
+      display: inline-block;
+      padding: 0.55rem 1.4rem;
+      background-color: #ffffff;
+      color: #222;
+      border: 1.5px solid #bbb;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-family: 'Source Sans 3', sans-serif;
+      transition: background 0.18s, border-color 0.18s;
+    }
+    .back-btn:hover {
+      background-color: #f5f5f5;
+      border-color: #888;
+    }
  
 </style>
 
@@ -116,11 +126,9 @@ footer {
     
   </blockquote>
    
-   <div class="back-home">
-  <a href="https://drhuazhao.github.io/" class="home-button">
-    ← Back to Home
-  </a>
-</div>
+   <div class="back-btn-wrap">
+      <a class="back-btn" href="https://drhuazhao.github.io/">← Back to Home</a>
+    </div>
    
 </div>
 </section>
