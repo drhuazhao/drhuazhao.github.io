@@ -1,228 +1,604 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dr. Hua Zhao</title>
-  <meta name="description" content="Dr. Hua Zhao — Researcher in Computer Science. Machine learning, data science, and few-shot learning." />
-  <link rel="preload" href="styles.css" as="style" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --ink: #1a1611;
+      --rust: #b85c38;
+      --gold: #c9a84c;
+      --mist: #ddd8cc;
+      --pale: #ede8de;
+      --shadow: rgba(26,22,17,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── CURSOR ── */
+    body { cursor: none; }
+    #cursor {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 10px; height: 10px;
+      background: var(--rust);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.15s ease, opacity 0.2s;
+      transform: translate(-50%, -50%);
+    }
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 9998;
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--rust);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.35s cubic-bezier(0.23,1,0.32,1), opacity 0.2s;
+      transform: translate(-50%, -50%);
+      opacity: 0.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 3rem;
+      background: rgba(245,240,232,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--mist);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none; opacity: 0.6;
+      transition: opacity 0.2s, color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--rust);
+      transform: scaleX(0); transition: transform 0.3s ease;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--rust); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-text {
+      position: absolute; top: 50%; right: -2rem;
+      transform: translateY(-50%);
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(6rem, 14vw, 18rem); font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--mist);
+      line-height: 1; user-select: none; pointer-events: none;
+      z-index: 0;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 3rem 5rem 5rem; z-index: 1;
+    }
+    .hero-tag {
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--rust); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-tag::before {
+      content: ''; display: block; width: 3rem; height: 1px; background: var(--rust);
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 300; line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--rust); }
+    .hero-bio {
+      font-size: 1.15rem; font-weight: 300; line-height: 1.8;
+      color: rgba(26,22,17,0.7); max-width: 42ch;
+      margin-bottom: 2.5rem;
+    }
+    .hero-roles {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 3rem;
+    }
+    .role-pill {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--mist);
+      border-radius: 100px;
+      color: rgba(26,22,17,0.6);
+      transition: all 0.25s;
+    }
+    .role-pill:hover { border-color: var(--rust); color: var(--rust); }
+    .hero-cta { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .btn {
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.85rem 2rem; text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-primary {
+      background: var(--ink); color: var(--cream);
+    }
+    .btn-primary:hover { background: var(--rust); }
+    .btn-secondary {
+      border: 1px solid var(--ink); color: var(--ink);
+    }
+    .btn-secondary:hover { border-color: var(--rust); color: var(--rust); }
+
+    .hero-right {
+      display: flex; align-items: center; justify-content: center;
+      padding: 5rem 5rem 5rem 3rem; z-index: 1; position: relative;
+    }
+    .portrait-frame {
+      position: relative; width: min(240px, 70%);
+    }
+    .portrait-frame::before {
+      content: ''; position: absolute;
+      top: -8px; left: -8px; right: -8px; bottom: -8px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%; z-index: 0;
+    }
+    .portrait-frame img {
+      width: 100%; display: block;
+      position: relative; z-index: 1;
+      filter: sepia(15%) contrast(1.05);
+      border-radius: 50%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+    .portrait-label {
+      position: absolute; bottom: -3rem; right: -1.5rem; z-index: 2;
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); writing-mode: vertical-rl;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 0 5rem; margin: 1rem 0;
+    }
+    .divider-line { flex: 1; height: 1px; background: var(--mist); }
+    .divider-icon {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 5rem; }
+    .section-header {
+      display: flex; align-items: baseline; gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .section-num {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.15em; color: var(--rust); opacity: 0.7;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300;
+      letter-spacing: -0.01em;
+    }
+    h2 span { font-style: italic; }
+
+    /* ── BLOG ── */
+    #blog { background: var(--pale); }
+    .blog-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px; background: var(--mist); border: 1px solid var(--mist);
+    }
+    .blog-card {
+      background: var(--pale); padding: 2.2rem;
+      text-decoration: none; color: var(--ink);
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: background 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .blog-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 3px; height: 100%;
+      background: var(--rust); transform: scaleY(0);
+      transform-origin: top; transition: transform 0.35s ease;
+    }
+    .blog-card:hover { background: white; }
+    .blog-card:hover::before { transform: scaleY(1); }
+    .blog-date {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.1em; color: var(--rust); opacity: 0.8;
+    }
+    .blog-title {
+      font-size: 1.1rem; font-weight: 400; line-height: 1.5;
+      flex: 1;
+    }
+    .blog-arrow {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(26,22,17,0.4);
+      transition: color 0.2s, letter-spacing 0.2s;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .blog-card:hover .blog-arrow { color: var(--rust); letter-spacing: 0.2em; }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--cream); }
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .project-card {
+      padding: 2.8rem; border: 1px solid var(--mist);
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .project-card:hover { border-color: var(--rust); }
+    .project-num {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.12em; color: var(--gold); margin-bottom: 1.2rem;
+    }
+    .project-title {
+      font-size: 1.6rem; font-weight: 400; margin-bottom: 1rem; line-height: 1.2;
+    }
+    .project-desc {
+      font-size: 0.95rem; line-height: 1.8; color: rgba(26,22,17,0.65);
+      margin-bottom: 1.5rem;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+    .tag {
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.06em; padding: 0.25rem 0.6rem;
+      background: var(--pale); color: rgba(26,22,17,0.55);
+    }
+    .project-link {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--rust); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 0.9rem; }
+
+    /* ── PUBLICATIONS ── */
+    #publications { background: var(--ink); color: var(--cream); }
+    #publications h2 { color: var(--cream); }
+    #publications .section-num { color: var(--gold); }
+    .pub-type {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem; margin-top: 3rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .pub-type::after {
+      content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1);
+    }
+    .pub-type:first-of-type { margin-top: 0; }
+    .pub-item {
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 2rem;
+    }
+    .pub-item a {
+      color: var(--cream); text-decoration: none;
+      font-size: 1.05rem; font-weight: 300; line-height: 1.6;
+      flex: 1; transition: color 0.2s;
+    }
+    .pub-item a:hover { color: var(--gold); }
+    .pub-badge {
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.25rem 0.6rem; border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.4); white-space: nowrap; flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--cream); padding: 3rem 5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--mist);
+    }
+    .footer-name {
+      font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .footer-copy {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.08em; color: rgba(26,22,17,0.4);
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(26,22,17,0.5); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--rust); }
+
+    /* ── ANIMATIONS ── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 5rem 1.5rem 3rem; }
+      section { padding: 4rem 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .divider { padding: 0 1.5rem; }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="#top">Dr. Hua Zhao</a>
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#blog">Blog</a>
-         <a href="#projects">Projects</a>
-        <a href="/personal-hobbies">Personal Hobbies</a>
-        <a href="#publications">Publications</a>
-        <a class="btn btn-ghost" href="https://scholar.google.co.uk/citations?user=tsb1mN4AAAAJ&hl=en&authuser=1" target="_blank" rel="noopener">Google Scholar</a>
-      </nav>
-    </div>
-  </header>
 
-  <main id="top">
-    
-    <section id="about" class="section">
-      <div class="container me">
-        <div class="my-photo">
-          <img src="profile.jpg" alt="Hua Zhao" >
-         
-          <div class="my-contact">
-            <a href="mailto:dr.hua.zhao@gmail.com" title="Email">
-              <i class="fa-solid fa-envelope contact-icon"></i>
-            </a>
-            <a href="https://x.com/Huazhao18" target="_blank" title="X (Twitter)">
-              <i class="fa-brands fa-x-twitter contact-icon"></i>
-            </a>
-            <a href="https://medium.com/@zhaohua819" target="_blank" rel="noopener" title="Medium">
-              <i class="fa-brands fa-medium contact-icon"></i>
-            </a>
-          </div>
-        </div>
-        
-    
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
-        <div class="my-text">
-          <h1> Hua Zhao</h1>
-         
-          <p>
-           Hello, I’m Hua Zhao, a Teaching Assistant in Computer Science at Heriot-Watt University and a PhD graduate in machine learning. 
-           I’m currently working as a builder and a startup founder, while transitioning into data analysis and machine learning roles.
-           I’ve also worked as an NGO and UN school teacher, and I’m a pizza chef who enjoys writing.
-          </p>
-
-          <!-- <div class="cta">
-            <a class="btn" href="files/CV_Hua_Zhao.pdf" target="_blank" rel="noopener">Download CV</a>
-            <a class="btn btn-ghost" href="#publications">View Publications</a>
-          </div> -->
-        </div>
-      </div>
-    </section>
-
-
- <!-- BLOG -->
- <section id="blog" class="section alt">
-  <div class="container">
-    
-  <h2>Blog</h2>
-
-  <ul class="blog-list">
-      <li>
-       <a href="https://medium.com/@zhaohua819/sugar-coated-promises-kongming-lanterns-and-my-first-street-stall-41d75b9da0c3"
-         target="_blank" rel="noopener">
-        Sugar-Coated Promises, Kongming Lanterns, and My First Street Stall (14-03-2026)
-       </a> 
-    </li>
-    
-    <li>
-      <a href="https://medium.com/@zhaohua819/the-real-development-of-data-and-ai-and-their-inherent-limitations-10a54b4baaa2"
-         target="_blank" rel="noopener">
-        The Real Development of Data and AI and Their Inherent Limitations (30-01-2026)
-      </a>
-      
-    <li>
-      <a href="https://medium.com/@zhaohua819/recently-youtube-inexplicably-recommended-a-historical-drama-to-me-called-half-moon-chronicle-566cf21ed642"
-         target="_blank" rel="noopener">
-        Notes: The Distorted Values Behind a Historical Drama (11-01-2026)
-      </a>
-      
-    <li>
-      <a href="https://medium.com/@zhaohua819/the-magic-of-hieroglyphs-a65cd87a2bdb"
-         target="_blank" rel="noopener">
-        The Magic of Hieroglyphs (08-12-2025)
-      </a>
-      
-    </li>
-    <li>
-       <a href="https://medium.com/@zhaohua819/llm-evolution-8a04a6f10aee"
-         target="_blank" rel="noopener">
-        LLM EVOLUTION (15-11-2025)
-       </a> 
-    </li>
-
-     <li>
-       <a href="https://medium.com/@zhaohua819/a-memoir-the-left-behind-children-who-grew-toward-the-sun-5405d65714d2"
-         target="_blank" rel="noopener">
-        A Memoir: The Left-behind Children Who Grew Toward the Sun (09-10-2025)
-       </a> 
-    </li>
+<!-- NAV -->
+<nav>
+  <a href="#top" class="nav-logo">Dr. Hua Zhao</a>
+  <ul class="nav-links">
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="https://drhuazhao.github.io/personal-hobbies" target="_blank">Hobbies</a></li>
+    <li><a href="https://scholar.google.co.uk/citations?user=tsb1mN4AAAAJ" target="_blank">Scholar ↗</a></li>
   </ul>
-  
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg-text">HZ</div>
+  <div class="hero-left">
+    <div class="hero-tag">Heriot-Watt University · Edinburgh</div>
+    <h1>Hua<br><em>Zhao</em></h1>
+    <p class="hero-bio">
+      Teaching Assistant in Computer Science &amp; PhD graduate in machine learning.
+      Builder, startup founder, former UN school teacher, and pizza chef who enjoys writing.
+    </p>
+    <div class="hero-roles">
+      <span class="role-pill">Machine Learning</span>
+      <span class="role-pill">Data Analysis</span>
+      <span class="role-pill">Startup Founder</span>
+      <span class="role-pill">Educator</span>
+      <span class="role-pill">Writer</span>
     </div>
-   </section>
+    <div class="hero-cta">
+      <a href="#publications" class="btn btn-primary">View Publications</a>
+      <a href="https://scholar.google.co.uk/citations?user=tsb1mN4AAAAJ" class="btn btn-secondary" target="_blank">Google Scholar ↗</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="portrait-frame">
+      <img src="https://drhuazhao.github.io/profile.jpg" alt="Dr. Hua Zhao" />
+      <span class="portrait-label">PhD · ML · CS</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-icon">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2>Recent <span>Writing</span></h2>
+  </div>
+  <div class="blog-grid">
+    <a class="blog-card reveal" href="https://medium.com/@zhaohua819/sugar-coated-promises-kongming-lanterns-and-my-first-street-stall-41d75b9da0c3" target="_blank">
+      <span class="blog-date">14 Mar 2026</span>
+      <span class="blog-title">Sugar-Coated Promises, Kongming Lanterns, and My First Street Stall</span>
+      <span class="blog-arrow">Read on Medium →</span>
+    </a>
+    <a class="blog-card reveal" href="https://medium.com/@zhaohua819/the-real-development-of-data-and-ai-and-their-inherent-limitations-10a54b4baaa2" target="_blank">
+      <span class="blog-date">30 Jan 2026</span>
+      <span class="blog-title">The Real Development of Data and AI and Their Inherent Limitations</span>
+      <span class="blog-arrow">Read on Medium →</span>
+    </a>
+    <a class="blog-card reveal" href="https://medium.com/@zhaohua819/recently-youtube-inexplicably-recommended-a-historical-drama-to-me-called-half-moon-chronicle-566cf21ed642" target="_blank">
+      <span class="blog-date">11 Jan 2026</span>
+      <span class="blog-title">The Distorted Values Behind a Historical Drama</span>
+      <span class="blog-arrow">Read on Medium →</span>
+    </a>
+    <a class="blog-card reveal" href="https://medium.com/@zhaohua819/the-magic-of-hieroglyphs-a65cd87a2bdb" target="_blank">
+      <span class="blog-date">08 Dec 2025</span>
+      <span class="blog-title">The Magic of Hieroglyphs</span>
+      <span class="blog-arrow">Read on Medium →</span>
+    </a>
+    <a class="blog-card reveal" href="https://medium.com/@zhaohua819/llm-evolution-8a04a6f10aee" target="_blank">
+      <span class="blog-date">15 Nov 2025</span>
+      <span class="blog-title">LLM Evolution</span>
+      <span class="blog-arrow">Read on Medium →</span>
+    </a>
+    <a class="blog-card reveal" href="https://medium.com/@zhaohua819/a-memoir-the-left-behind-children-who-grew-toward-the-sun-5405d65714d2" target="_blank">
+      <span class="blog-date">09 Oct 2025</span>
+      <span class="blog-title">A Memoir: The Left-behind Children Who Grew Toward the Sun</span>
+      <span class="blog-arrow">Read on Medium →</span>
+    </a>
+  </div>
+</section>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-icon">✦</div>
+  <div class="divider-line"></div>
+</div>
 
 <!-- PROJECTS -->
-<section id="projects" class="section alt">
-  <div class="container">
-  <h2>Projects</h2>
-
-  <div class="project-grid">
-    
-    <div class="project-card">
-      <h3>Flashcard Learning App</h3>
-      <p>
-        Built a flashcard learning app using spaced repetition to improve memory retention. Implemented adaptive review scheduling and progress tracking, focusing on user experience and efficient data handling.
-      </p>
-      <div class="project-tech">
-        TypeScript, React Native, Expo, SQLite, REST API integration, mobile UI animations, cross-platform app development
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2>Selected <span>Projects</span></h2>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-num">Project 01</div>
+      <h3 class="project-title">Flashcard Learning App</h3>
+      <p class="project-desc">Built a flashcard learning app using spaced repetition to improve memory retention. Implemented adaptive review scheduling and progress tracking, focusing on user experience and efficient data handling.</p>
+      <div class="project-tags">
+        <span class="tag">TypeScript</span>
+        <span class="tag">React Native</span>
+        <span class="tag">Expo</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">REST API</span>
+        <span class="tag">Mobile UI</span>
       </div>
-      
-       </div>
-    
-    <div class="project-card">
-      <h3>Fraud Detection System</h3>
-      <p>
-        Machine learning system for detecting fraudulent transactions using classification models and data analysis.
-      </p>
-
-      <div class="project-tech">
-        Python · Scikit-learn · Pandas · Data Analysis
-      </div>
-
-      <a href="https://github.com/drhuazhao/fraud-detection-project" target="_blank">
-        View Project →
-      </a>
     </div>
-
-     
-
-   
+    <div class="project-card reveal">
+      <div class="project-num">Project 02</div>
+      <h3 class="project-title">Fraud Detection System</h3>
+      <p class="project-desc">Machine learning system for detecting fraudulent transactions using classification models and data analysis techniques.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">Data Analysis</span>
+      </div>
+      <a class="project-link" href="https://github.com/drhuazhao/fraud-detection-project" target="_blank">View on GitHub →</a>
     </div>
   </div>
+</section>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-icon">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2>Publications &amp; <span>Research</span></h2>
   </div>
-</section>  
-    
-    <!-- PUBLICATIONS -->
-    <section id="publications" class="section alt">
-      <div class="container">
-        <h2>Publications</h2>
-        
-    
-        <h3>Journal</h3>
-        <ul class="pub-list">
-          <li class="pub">
-            <a href="https://www.graphyonline.com/archives/archivedownload.php?pid=IJCSE-183&utm_source=chatgpt.com" target="_blank" rel="noopener">
-              A Novel Method on Translating People's Names in Mandarin — “LT-NTM”
-            </a>
-            <span class="pub-meta">Journal article</span>
-          </li>
-          <li class="pub">
-            <a href="https://irispublishers.com/gjes/pdf/GJES.MS.ID.000740.pdf" target="_blank" rel="noopener">
-              A Novel Method on Translating People’s Names in Mandarin — “DT-NTM”
-            </a>
-            <span class="pub-meta">Journal article</span>
-          </li>
-        </ul>
 
-        <h3>Conference Papers</h3>
-        <ul class="pub-list">
-          <li class="pub">
-            <a href="https://dl.acm.org/doi/10.1145/3504006.3504022" target="_blank" rel="noopener">
-              A Novel Method That Identifies The Hidden Properties Of A Person's Name In Kanji or Hanzi
-            </a>
-            <span class="pub-meta">Conference paper</span>
-          </li>
-          <li class="pub">
-            <a href="https://www.computer.org/csdl/proceedings-article/csci/2017/2652a222/17D45WrVgfD?utm_source=chatgpt.com" target="_blank" rel="noopener">
-              Advance gender prediction tool of first names and its use in analysing gender disparity in CS in the UK, Malaysia and China
-            </a>
-            <span class="pub-meta">Conference paper</span>
-          </li>
-          <li class="pub">
-            <a href="https://www.researchgate.net/publication/364711146_Recursion_identify_algorithm_for_Gender_Prediction_with_Chinese_names" target="_blank" rel="noopener">
-              Recursion identification algorithm for gender prediction with Chinese names
-            </a>
-            <span class="pub-meta">Conference paper</span>
-          </li>
-          <li class="pub">
-            <a href="https://scispace.com/papers/a-decision-tree-method-on-fuzzy-name-identification-from-3btupipqwm?utm_source=chatgpt.com" target="_blank" rel="noopener">
-              A Decision Tree Method on Fuzzy Name Identification from Chinese phonemic names to Chinese names
-            </a>
-            <span class="pub-meta">Conference paper</span>
-          </li>
-          <li class="pub">
-            <a href="https://dblp.org/db/conf/mldm/mldm2019-1.html#YinZK19" target="_blank" rel="noopener">
-              A Novel Phonetic Algorithm for Predicting Chinese Names using Chinese Pinyin
-            </a>
-            <span class="pub-meta">Conference paper</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-  </main>
+  <div class="pub-type reveal">Journal Articles</div>
 
-  <footer class="site-footer">
-    <div class="container">
-      <small>© <span id="year"></span> Dr. Hua Zhao </small>
-    </div>
-  </footer>
+  <div class="pub-item reveal">
+    <a href="https://www.graphyonline.com/archives/archivedownload.php?pid=IJCSE-183" target="_blank">
+      A Novel Method on Translating People's Names in Mandarin — "LT-NTM"
+    </a>
+    <span class="pub-badge">Journal</span>
+  </div>
+  <div class="pub-item reveal">
+    <a href="https://irispublishers.com/gjes/pdf/GJES.MS.ID.000740.pdf" target="_blank">
+      A Novel Method on Translating People's Names in Mandarin — "DT-NTM"
+    </a>
+    <span class="pub-badge">Journal</span>
+  </div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <div class="pub-type reveal">Conference Papers</div>
+
+  <div class="pub-item reveal">
+    <a href="https://dl.acm.org/doi/10.1145/3504006.3504022" target="_blank">
+      A Novel Method That Identifies The Hidden Properties Of A Person's Name In Kanji or Hanzi
+    </a>
+    <span class="pub-badge">ACM</span>
+  </div>
+  <div class="pub-item reveal">
+    <a href="https://www.computer.org/csdl/proceedings-article/csci/2017/2652a222/17D45WrVgfD" target="_blank">
+      Advance Gender Prediction Tool of First Names and Its Use in Analysing Gender Disparity in CS in the UK, Malaysia and China
+    </a>
+    <span class="pub-badge">IEEE</span>
+  </div>
+  <div class="pub-item reveal">
+    <a href="https://www.researchgate.net/publication/364711146_Recursion_identify_algorithm_for_Gender_Prediction_with_Chinese_names" target="_blank">
+      Recursion Identification Algorithm for Gender Prediction with Chinese Names
+    </a>
+    <span class="pub-badge">Conference</span>
+  </div>
+  <div class="pub-item reveal">
+    <a href="https://scispace.com/papers/a-decision-tree-method-on-fuzzy-name-identification-from-3btupipqwm" target="_blank">
+      A Decision Tree Method on Fuzzy Name Identification from Chinese Phonemic Names to Chinese Names
+    </a>
+    <span class="pub-badge">Conference</span>
+  </div>
+  <div class="pub-item reveal">
+    <a href="https://dblp.org/db/conf/mldm/mldm2019-1.html#YinZK19" target="_blank">
+      A Novel Phonetic Algorithm for Predicting Chinese Names using Chinese Pinyin
+    </a>
+    <span class="pub-badge">MLDM</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Dr. Hua Zhao</div>
+  <div class="footer-links">
+    <a href="https://medium.com/@zhaohua819" target="_blank">Medium</a>
+    <a href="https://scholar.google.co.uk/citations?user=tsb1mN4AAAAJ" target="_blank">Scholar</a>
+    <a href="https://github.com/drhuazhao" target="_blank">GitHub</a>
+    <a href="https://drhuazhao.github.io/personal-hobbies" target="_blank">Hobbies</a>
+  </div>
+  <div class="footer-copy">© Dr. Hua Zhao</div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animate() {
+    cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(animate);
+  })();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform += ' scale(1.8)';
+      ring.style.opacity = '0.8';
+      ring.style.transform += ' scale(1.4)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.opacity = '0.5';
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
