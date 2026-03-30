@@ -367,14 +367,15 @@
     @media (max-width: 900px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { gap: 1.5rem; }
-      .hero { grid-template-columns: 1fr; }
+      .hero { grid-template-columns: 1fr; display: flex; flex-direction: column; }
       .hero-right {
         display: flex;
         justify-content: center;
-        padding: 0 1.5rem 3rem;
+        padding: 6rem 1.5rem 0;
+        order: -1;
       }
-      .portrait-frame { width: 160px; }
-      .hero-left { padding: 5rem 1.5rem 1.5rem; }
+      .portrait-frame { width: 120px; }
+      .hero-left { padding: 1.5rem 1.5rem 3rem; }
       section { padding: 4rem 1.5rem; }
       .projects-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
@@ -406,8 +407,8 @@
     <div class="hero-tag">Heriot-Watt University · Edinburgh</div>
     <h1>Hua<br><em>Zhao</em></h1>
     <p class="hero-bio">
-      Teaching Assistant in Computer Science & PhD graduate in machine learning. Builder, startup founder, pizza chef, and former NGO and UN school teacher. 
-      Passionate about data analysis, machine learning, and writing.
+      Teaching Assistant in Computer Science &amp; PhD graduate in machine learning.
+      Builder, startup founder, former UN school teacher, and pizza chef who enjoys writing.
     </p>
     <div class="hero-socials">
       <a href="https://www.linkedin.com/in/hua-bobby-zhao-60287ab0" target="_blank" class="hero-social" title="LinkedIn">
@@ -501,9 +502,8 @@
   <div class="projects-grid">
     <div class="project-card reveal">
       <div class="project-num">Project 01</div>
-      <h3 class="project-title">Cucumber: Word Decks App</h3>
-      <p class="project-desc">Built it to help people learn vocabulary more effectively. 
-        Implemented adaptive review scheduling and progress tracking, focusing on user experience and efficient data handling. Link coming shortly …</p>
+      <h3 class="project-title">Flashcard Learning App</h3>
+      <p class="project-desc">Built a flashcard learning app using spaced repetition to improve memory retention. Implemented adaptive review scheduling and progress tracking, focusing on user experience and efficient data handling.</p>
       <div class="project-tags">
         <span class="tag">TypeScript</span>
         <span class="tag">React Native</span>
