@@ -1,145 +1,459 @@
----
-layout: default
-title: Personal Hobbies
-permalink: /personal-hobbies/
-page-header: none
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Hobbies — Dr. Hua Zhao</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
----
+    :root {
+      --cream: #f5f0e8;
+      --ink: #1a1611;
+      --rust: #b85c38;
+      --gold: #c9a84c;
+      --mist: #ddd8cc;
+      --pale: #ede8de;
+      --shadow: rgba(26,22,17,0.08);
+    }
 
-<style>
- .page-header {
-  display: none;
-}
-.container{
-  width: min(1100px, 92%);
-  margin: 0 auto;
-}
-/* Only affect images inside the Personal Hobbies page content */
-#main-content img, .page-content img, article img {
-  max-width: 240px !important;
-  height: auto !important;
-}
-/* Top navigation */
+    html { scroll-behavior: smooth; }
 
-.top-nav {
-  text-align: center;
-  margin-bottom: 30px;
-}
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
 
-.top-nav a {
-  margin: 0 14px;
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-}
+    /* ── CURSOR ── */
+    body { cursor: none; }
+    #cursor {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 10px; height: 10px;
+      background: var(--rust); border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.15s ease, opacity 0.2s;
+      transform: translate(-50%, -50%);
+    }
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 9998;
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--rust); border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.35s cubic-bezier(0.23,1,0.32,1), opacity 0.2s;
+      transform: translate(-50%, -50%);
+      opacity: 0.5;
+    }
 
-.top-nav a:hover {
-  text-decoration: underline;
-}
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 3rem;
+      background: rgba(245,240,232,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--mist);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none; opacity: 0.6;
+      transition: opacity 0.2s, color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--rust);
+      transform: scaleX(0); transition: transform 0.3s ease;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--rust); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a.active { opacity: 1; color: var(--rust); }
+    .nav-links a.active::after { transform: scaleX(1); }
 
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 9rem 5rem 5rem;
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--mist);
+    }
+    .page-hero-bg {
+      position: absolute; top: 50%; right: -1rem;
+      transform: translateY(-50%);
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(5rem, 12vw, 14rem); font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--mist);
+      line-height: 1; user-select: none; pointer-events: none;
+    }
+    .page-tag {
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--rust); margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .page-tag::before {
+      content: ''; display: block; width: 3rem; height: 1px; background: var(--rust);
+    }
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 300; line-height: 1.05; letter-spacing: -0.01em;
+      margin-bottom: 1.5rem; position: relative; z-index: 1;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--rust); }
+    .page-hero-desc {
+      font-size: 1.15rem; font-weight: 300; line-height: 1.85;
+      color: rgba(26,22,17,0.65); max-width: 55ch;
+      position: relative; z-index: 1;
+    }
 
- /* Back to Home Button */
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 0 5rem; margin: 0.5rem 0;
+    }
+    .divider-line { flex: 1; height: 1px; background: var(--mist); }
+    .divider-icon {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase;
+    }
 
-.back-btn-wrap {
+    /* ── SECTIONS ── */
+    section { padding: 5rem 5rem; }
+    .section-header {
+      display: flex; align-items: baseline; gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .section-num {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.15em; color: var(--rust); opacity: 0.7;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300;
+      letter-spacing: -0.01em;
+    }
+    h2 span { font-style: italic; }
+
+    /* ── PAPER CUTTING GALLERY ── */
+    #paper-cutting { background: var(--pale); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .gallery-card {
+      position: relative; overflow: hidden;
+      background: var(--cream);
+      border: 1px solid var(--mist);
+      transition: border-color 0.3s, transform 0.4s cubic-bezier(0.23,1,0.32,1);
+    }
+    .gallery-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+    .gallery-img-wrap {
+      overflow: hidden; aspect-ratio: 1 / 1;
+    }
+    .gallery-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.23,1,0.32,1);
+      filter: sepia(10%) contrast(1.05);
+    }
+    .gallery-card:hover .gallery-img-wrap img {
+      transform: scale(1.06);
+    }
+    .gallery-info {
+      padding: 1.2rem 1.4rem;
+      display: flex; justify-content: space-between; align-items: baseline;
+    }
+    .gallery-title {
+      font-size: 1.05rem; font-weight: 400;
+    }
+    .gallery-date {
+      font-family: 'DM Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.08em; color: var(--rust); opacity: 0.8;
+    }
+
+    /* ── BOOKS ── */
+    #books { background: var(--ink); color: var(--cream); }
+    #books h2 { color: var(--cream); }
+    #books .section-num { color: var(--gold); }
+    .books-intro {
+      font-size: 1.1rem; font-weight: 300; line-height: 1.85;
+      color: rgba(245,240,232,0.6); max-width: 55ch; margin-bottom: 3rem;
+    }
+    .books-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px; background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .book-card {
+      background: var(--ink); padding: 1.8rem 2rem;
+      transition: background 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .book-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 100%; height: 2px;
+      background: var(--gold); transform: scaleX(0);
+      transform-origin: left; transition: transform 0.35s ease;
+    }
+    .book-card:hover { background: rgba(255,255,255,0.03); }
+    .book-card:hover::before { transform: scaleX(1); }
+    .book-title {
+      font-size: 1.05rem; font-weight: 400; line-height: 1.5;
+      color: var(--cream); margin-bottom: 0.4rem;
+    }
+    .book-author {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.06em; color: var(--gold); opacity: 0.8;
+    }
+    .books-more {
       margin-top: 2.5rem;
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(245,240,232,0.35);
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .books-more::before {
+      content: ''; display: block; width: 2rem; height: 1px;
+      background: rgba(245,240,232,0.2);
     }
 
-    .back-btn {
-      display: inline-block;
-      padding: 0.55rem 1.4rem;
-      background-color: #ffffff;
-      color: #222;
-      border: 1.5px solid #bbb;
-      border-radius: 4px;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-family: 'Source Sans 3', sans-serif;
-      transition: background 0.18s, border-color 0.18s;
+    /* ── BACK LINK ── */
+    .back-bar {
+      padding: 2.5rem 5rem;
+      display: flex; align-items: center; gap: 1rem;
+      border-top: 1px solid var(--mist);
     }
-    .back-btn:hover {
-      background-color: #f5f5f5;
-      border-color: #888;
+    .back-link {
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      transition: gap 0.2s, color 0.2s;
     }
-  .site-footer-credits {
-  display: none;
-   }
+    .back-link:hover { color: var(--rust); gap: 1rem; }
 
-</style>
+    /* ── FOOTER ── */
+    footer {
+      background: var(--cream); padding: 2rem 5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--mist);
+    }
+    .footer-name {
+      font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .footer-copy {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.08em; color: rgba(26,22,17,0.4);
+    }
 
-<nav class="top-nav">
-  <a href="/">Home</a>
-  <a href="/#about">About</a>
-  <a href="/#publications">Publications</a>
-  <a href="/#blog">Blog</a>
+    /* ── ANIMATIONS ── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .page-hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 4rem 1.5rem; }
+      .back-bar { padding: 2rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; gap: 0.8rem; }
+      .divider { padding: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="https://drhuazhao.github.io/" class="nav-logo">Dr. Hua Zhao</a>
+  <ul class="nav-links">
+    <li><a href="https://drhuazhao.github.io/#blog">Blog</a></li>
+    <li><a href="https://drhuazhao.github.io/#projects">Projects</a></li>
+    <li><a href="https://drhuazhao.github.io/#publications">Publications</a></li>
+    <li><a href="#" class="active">Hobbies</a></li>
+    <li><a href="https://scholar.google.co.uk/citations?user=tsb1mN4AAAAJ" target="_blank">Scholar ↗</a></li>
+  </ul>
 </nav>
 
-<section class="page-content">
-
-  <div class="hobbies-page">
-  <h1>Personal Hobbies</h1>
-
-  <p>In my spare time, I enjoy creating things by hand, especially paper cutting, which helps me feel connected to my inner self. 
-    I also enjoy reading and have recently become particularly interested in books on philosophy and physics.</p>
-
-  <hr>
-
-  <h2>Paper Cutting</h2>
-
-    
-    <div class="craft-item">
-      <h3>Ba dum (13-01-2026)</h3>
-      <img src="/assets/images/paper-cutting/Ba dum.jpg" alt="Floral paper cutting" class="craft-photo">
-
-    </div>
-    
-    <div class="craft-item">
-      <h3>Hieroglyph (09-12-2025)</h3>
-      <img class="craft-photo" src="/assets/images/paper-cutting/hieroglyph.jpg" alt="Hieroglyph paper cutting">
-     
-    </div>
-    
-    <div class="craft-item">
-      <h3>Sun God (04-12-2025)</h3>
-      <img src="/assets/images/paper-cutting/Sun God.jpg" alt="Traditional paper cutting design" class="craft-photo">
-  
-
-   </div> 
-    <div class="craft-item">
-      <h3>Light and Electricity (24-11-2025)</h3>
-      <img src="/assets/images/paper-cutting/Light and Electricity.jpg" alt="Traditional paper cutting design" class="craft-photo">
-    
-    </div>  
-
-  <hr>
-
-  <h2> Book Reading </h2>
-
-  <h3>Favourite Books...</h3>
-   <p><strong>Introduction to Quantum Mecganics — David J.Griffiths & Darrell F.Schroeter </strong><br>      
-   <p><strong>Zero To One — Peter Thiel</strong><br>      
-   <p><strong>Show Your Work! — Austin Kleon</strong><br>   
-   <p><strong>Atomic Habits — James Clear</strong><br>
-   <p><strong>Kokoro — Natsume Sōseki </strong><br>
-   <p><strong>Cien años de soledad - Gabriel García Márquez</strong><br>
-   <p><strong>Liao-Fan’s Four Lessons - Yuan Liaofan </strong><br>
-   <p><strong>World History Textbook: Economy - Keiichi Yamazaki  </strong><br>
-   <p><strong>The 5 AM Club: Own Your Morning -  Robin Sharma </strong><br>
-   <p><strong>Iwata-san - Satoru Iwata </strong><br>
-     
-
-  <blockquote>
-    “More to come…”<br>
-    
-  </blockquote>
-   
-   <div class="back-btn-wrap">
-    
-      <a class="back-btn" href="https://drhuazhao.github.io/">← Back </a>
-    </div>
-   
-<footer style="text-align:center; margin-top:40px; color:#777;">
-  © Dr. Hua Zhao
-</footer>
-   
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg">HOBBIES</div>
+  <div class="page-tag">Beyond the Lab</div>
+  <h1>Personal<br><em>Hobbies</em></h1>
+  <p class="page-hero-desc">
+    In my spare time, I enjoy creating things by hand — especially paper cutting, which helps me feel connected to my inner self. I also enjoy reading, and have recently become particularly interested in books on philosophy and physics.
+  </p>
 </div>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-icon">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- PAPER CUTTING -->
+<section id="paper-cutting">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2>Paper <span>Cutting</span></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card reveal">
+      <div class="gallery-img-wrap">
+        <img src="https://drhuazhao.github.io/assets/images/paper-cutting/Ba dum.jpg" alt="Ba dum paper cutting" />
+      </div>
+      <div class="gallery-info">
+        <span class="gallery-title">Ba dum</span>
+        <span class="gallery-date">13 Jan 2026</span>
+      </div>
+    </div>
+    <div class="gallery-card reveal">
+      <div class="gallery-img-wrap">
+        <img src="https://drhuazhao.github.io/assets/images/paper-cutting/hieroglyph.jpg" alt="Hieroglyph paper cutting" />
+      </div>
+      <div class="gallery-info">
+        <span class="gallery-title">Hieroglyph</span>
+        <span class="gallery-date">09 Dec 2025</span>
+      </div>
+    </div>
+    <div class="gallery-card reveal">
+      <div class="gallery-img-wrap">
+        <img src="https://drhuazhao.github.io/assets/images/paper-cutting/Sun God.jpg" alt="Sun God paper cutting" />
+      </div>
+      <div class="gallery-info">
+        <span class="gallery-title">Sun God</span>
+        <span class="gallery-date">04 Dec 2025</span>
+      </div>
+    </div>
+    <div class="gallery-card reveal">
+      <div class="gallery-img-wrap">
+        <img src="https://drhuazhao.github.io/assets/images/paper-cutting/Light and Electricity.jpg" alt="Light and Electricity paper cutting" />
+      </div>
+      <div class="gallery-info">
+        <span class="gallery-title">Light and Electricity</span>
+        <span class="gallery-date">24 Nov 2025</span>
+      </div>
+    </div>
+  </div>
 </section>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-icon">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- BOOKS -->
+<section id="books">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2>Favourite <span>Books</span></h2>
+  </div>
+  <div class="books-grid">
+    <div class="book-card reveal">
+      <div class="book-title">Introduction to Quantum Mechanics</div>
+      <div class="book-author">David J. Griffiths &amp; Darrell F. Schroeter</div>
+    </div>
+    <div class="book-card reveal">
+      <div class="book-title">Zero To One</div>
+      <div class="book-author">Peter Thiel</div>
+    </div>
+    <div class="book-card reveal">
+      <div class="book-title">Show Your Work!</div>
+      <div class="book-author">Austin Kleon</div>
+    </div>
+    <div class="book-card reveal">
+      <div class="book-title">Atomic Habits</div>
+      <div class="book-author">James Clear</div>
+    </div>
+    <div class="book-card reveal">
+      <div class="book-title">Kokoro</div>
+      <div class="book-author">Natsume Sōseki</div>
+    </div>
+    <div class="book-card reveal">
+      <div class="book-title">Cien años de soledad</div>
+      <div class="book-author">Gabriel García Márquez</div>
+    </div>
+    <div class="book-card reveal">
+      <div class="book-title">Liao-Fan's Four Lessons</div>
+      <div class="book-author">Yuan Liaofan</div>
+    </div>
+    <div class="book-card reveal">
+      <div class="book-title">World History Textbook: Economy</div>
+      <div class="book-author">Keiichi Yamazaki</div>
+    </div>
+    <div class="book-card reveal">
+      <div class="book-title">The 5 AM Club: Own Your Morning</div>
+      <div class="book-author">Robin Sharma</div>
+    </div>
+    <div class="book-card reveal">
+      <div class="book-title">Iwata-san</div>
+      <div class="book-author">Satoru Iwata</div>
+    </div>
+  </div>
+  <div class="books-more reveal">More to come…</div>
+</section>
+
+<!-- BACK -->
+<div class="back-bar">
+  <a href="https://drhuazhao.github.io/" class="back-link">← Back to Home</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+ 
+  <div class="footer-copy">© Dr. Hua Zhao</div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animate() {
+    cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(animate);
+  })();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.opacity = '0.8'; });
+    el.addEventListener('mouseleave', () => { ring.style.opacity = '0.5'; });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
