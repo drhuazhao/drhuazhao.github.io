@@ -1,4 +1,4 @@
-This is Dr. Hua Zhao's website. 
+This is Dr. Hua Chao's website. 
 --------------------------
 Content:
 - Introduction
